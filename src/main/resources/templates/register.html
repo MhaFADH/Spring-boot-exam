@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.css">
+</head>
+<header th:replace="header::header"></header>
+
+<body>
+<div class="container d-flex  justify-content-center align-items-center" style="min-height: 75vh">
+
+
+     <div class="card" style="width: 18rem">
+                        <div class="card-header">
+                            Register
+                        </div>
+                        <div class="card-body">
+                            <form method="post" th:action="@{/register}" th:object="${userInfos}">
+
+                                    <div class="mb-3">
+                                        <label for="fname" class="form-label">First Name</label>
+                                        <input id="fname"  class="form-control" type="text" autofocus=""  placeholder="First Name" required="" th:field="*{prenom}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="lname" class="form-label">Last Name</label>
+                                        <input id="lname" class="form-control" type="text" autofocus=""  placeholder="Last Name" required="" th:field="*{nom}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="adresse"  class="form-label">Address</label>
+                                        <input id="adresse" class="form-control" type="text" autofocus=""  placeholder="Address" required="" th:field="*{adresse}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="tel" class="form-label">Phone</label>
+                                        <input id="tel" class="form-control" type="text" autofocus=""  placeholder="Phone number" required="" th:field="*{telephone}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email address</label>
+                                        <input id="email" class="form-control" type="email" autofocus=""  placeholder="Email" required="" th:field="*{email}">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input id="password" class="form-control" type="password" placeholder="********" th:field="*{password}">
+                                    </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Register</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.min.js}"></script>
+</body>
+</html>

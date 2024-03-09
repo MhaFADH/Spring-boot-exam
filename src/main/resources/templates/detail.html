@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detail</title>
+  <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.css">
+</head>
+<header th:replace="header::header"></header>
+
+<body>
+<div class="container" th:object="${parfum}">
+<h1 th:text="${parfum.titre}"></h1>
+<main>
+  <div class="row">
+    <div class="col-md-12">
+      <img class="card-img-top" th:src="${parfum.photo}" alt="Card image cap" style="width: 20rem;">
+
+      <p th:text="${parfum.description}"></p>
+      <a th:if="${user == false}" th:href="@{'/parfum/commande?id='+${parfum.id}}" th:text="${parfum.prix}+'€'" class="btn btn-primary"></a>
+
+    </div>
+  </div>
+
+</main>
+
+</div>
+
+<script src="/webjars/bootstrap/5.3.3/js/bootstrap.js"></script>
+</body>
+</html>

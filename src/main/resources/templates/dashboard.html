@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.css">
+</head>
+<header th:replace="header::header"></header>
+
+<body>
+<div class="container">
+<main>
+    <h1>Gestion des parfums</h1>
+    <div class="row mt-4">
+        <div class="col-md-5">
+            <h2>Liste des parfums</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${parfums}">
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.titre}"></td>
+                    <td th:text="${item.miniDesc}"></td>
+                    <td th:text="${item.prix}"></td>
+                    <td>
+                        <a th:href="@{'/dashboard?id='+${item.id}}">Modifier</a>
+                        <a th:href="@{'/dashboard/delete?id='+${item.id}}">Supprimer</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class=" col-md-7">
+            <h2>Informations du parfum</h2>
+            <div th:if="${error}" th:text="${error}" class="alert alert-danger" role="alert"></div>
+
+            <form action="/dashboard/recupForm" method="post" th:object="${parfum}">
+                <div class="form-group mt-2">
+                    <label for="titre">Titre</label>
+                    <input type="text" class="form-control" id="titre" name="titre" th:field="*{titre}">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="photo">Lien de la photo</label>
+                    <input type="text" class="form-control" id="photo" name="photo" th:field="*{photo}">
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="prix">Prix</label>
+                            <input type="number" class="form-control" id="prix" name="prix" th:field="*{prix}">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="surface">Petite description</label>
+                            <input type="text" class="form-control" id="surface" name="surface" th:field="*{miniDesc}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description" th:field="*{description}"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-4">Submit</button>
+
+                <input type="hidden" name="id" th:field="*{id}"/>
+            </form>
+            <h2>Liste des commandes</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Montant</th>
+                    <th scope="col">Etat</th>
+                    <th scope="col">Utilisateur</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${commandes}">
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.parfum.titre}"></td>
+                    <td th:text="${item.montant}"></td>
+                    <td th:text="${item.etat}"></td>
+                    <td th:text="${item.user.email}"></td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+
+</div>
+
+<script src="/webjars/bootstrap/5.3.3/js/bootstrap.js"></script>
+</body>
+</html>

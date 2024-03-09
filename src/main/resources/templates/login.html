@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login</title>
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+  <link type="application/javascript" th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.min.js}" >
+</head>
+<header th:replace="header::header"></header>
+<body>
+<div class="container d-flex  justify-content-center align-items-center" style="min-height: 75vh">
+
+  <div class="mx-auto space-y-10">
+
+    <form method="post" th:action="@{login}">
+          <div class="card" style="width: 18rem">
+            <div th:if="${param.error}" class="alert alert-danger">Invalid username and password.</div>
+            <div th:if="${param.logout}" class="alert alert-danger"> You have been logged out.</div>
+            <div class="card-header">
+              Login
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email address</label>
+                  <input class="form-control" id="email" name="username" type="email" autofocus=""  placeholder="Identifiant" required="" th:value="${username}">
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input class="form-control" id="password" name="password" type="password" autofocus=""  placeholder="Mot de passe" required="" th:value="${password}">
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+              </form>
+            </div>
+          </div>
+    </form>
+  </div>
+</div>
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.min.js}"></script>
+</body>
